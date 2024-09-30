@@ -1,4 +1,7 @@
 install:
 	pip install -r requirements.txt
+
 run:
-	flask run --host=localhost --port=3000
+	python app.py
+
+# Ensure to create a requirements.txt file with the necessary dependencies

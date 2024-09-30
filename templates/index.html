@@ -2,36 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMeans Clustering Visualization</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>KMeans Visualization</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>KMeans Clustering Algorithm</h1>
-        
-        <div class="controls">
-            <label for="num_clusters">Number of Clusters (k):</label>
-            <input type="number" id="num_clusters" min="1" value="3">
-
-            <label for="init_method">Initialization Method:</label>
-            <select id="init_method">
-                <option value="random">Random</option>
-                <option value="farthest_first">Farthest First</option>
-                <option value="kmeans++">KMeans++</option>
-                <option value="manual">Manual</option>
-            </select>
-
-            <button id="generate_data">Generate New Dataset</button>
-            <button id="step_through" disabled>Step Through KMeans</button>
-            <button id="run_to_convergence" disabled>Run to Convergence</button>
-            <button id="reset" disabled>Reset Algorithm</button>
+    <h1>KMeans Clustering Visualization</h1>
+    <div>
+        <label for="init-method">Initialization Method:</label>
+        <select id="init-method" onchange="toggleCentroidInput()">
+            <option value="random">Random</option>
+            <option value="farthest">Farthest</option>
+            <option value="k-means++">KMeans++</option>
+            <option value="manual">Manual</option>
+        </select>
+        <div id="manual-centroids" style="display: none;">
+            <label for="centroids">Click on the chart to add centroids:</label>
         </div>
-
-        <div id="plot"></div>
+        <button onclick="generateData()">Generate Data</button>
+        <button onclick="runKMeans()">Run KMeans</button>
+        <button onclick="stepKMeans()">Step KMeans</button>
+        <button onclick="convergeKMeans()">Converge KMeans</button>
+        <button onclick="resetKMeans()">Reset</button>
     </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div id="chart"></div>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
